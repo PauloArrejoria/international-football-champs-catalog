@@ -1,0 +1,18 @@
+.player th,
+.player td {
+  background-color: #282c34;
+  color: white;
+}
+
+.gk {
+  background-color: "#fce7b1";
+  border: 1px solid #dcca9b;
+}
+
+.pos {
+  padding: 3px 5px;
+}
+
+.ovr80-89 {
+  color: #ffff00;
+}

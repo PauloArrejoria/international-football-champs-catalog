@@ -1,0 +1,19 @@
+.stats {
+  background-color: #000047;
+  border: solid 2px #123fe0;
+  padding: 15px;
+  max-width: 768px;
+  margin-top: 20px;
+}
+
+.ovr80-89 {
+  color: #ffff00;
+}
+
+.ovr-font {
+  font-size: 25px;
+}
+
+.ovr-container {
+  margin: 10px 0;
+}

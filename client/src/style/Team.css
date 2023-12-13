@@ -1,0 +1,11 @@
+.emblem {
+  margin: 10px auto;
+  height: 128px;
+}
+
+.item-container {
+  margin: 20px 0;
+}
+.carousel-item span {
+  font-size: 30px;
+}

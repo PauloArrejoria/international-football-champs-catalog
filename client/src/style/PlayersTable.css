@@ -1,0 +1,9 @@
+.players-table {
+  max-width: 768px;
+  margin: 5px auto;
+}
+
+.players-table thead tr th {
+  background-color: #282c34;
+  color: white;
+}

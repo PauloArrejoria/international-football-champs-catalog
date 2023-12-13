@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  border: 0.5px solid #282c34;
+}
+
+.App h2 {
+  margin: 30px auto 10px auto;
+  font-size: bold;
+  color: white;
+}
