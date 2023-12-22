@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Stats from "./componentes/Stats.js";
 import PlayersTable from "./componentes/PlayersTable.js";
 
@@ -12,10 +12,6 @@ function App() {
     setReserve(newReserveTeam);
   };
 
-  useEffect(() => {
-    console.log(startingTeam);
-    console.log(reserveTeam);
-  });
   return (
     <div className="App">
       <Stats onUpdate={handleStatsUpdate} />
