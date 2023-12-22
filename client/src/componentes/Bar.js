@@ -5,7 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function Bar({ width }) {
   const widthBar = {
-    width: `${width + 1}` + "%",
+    width: `${width + 1}%`,
   };
 
   const barColor = () => {

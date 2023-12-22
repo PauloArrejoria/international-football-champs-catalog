@@ -9,21 +9,35 @@ function Player({ number, pos, name, nat, ovr }) {
     if (pos === "GK") {
       posColor = "bg-warning border border-warning rounded";
       return posColor;
-    } else if (pos === "CB" || pos === "SW" || pos === "RB" || pos === "LB") {
+    } else if (
+      pos === "CB" ||
+      pos === "SW" ||
+      pos === "RB" ||
+      pos === "LB" ||
+      pos === "SB"
+    ) {
       posColor = "bg-primary border border-primary rounded";
       return posColor;
     } else if (
-      pos === "DMF" ||
-      pos === "CMF" ||
+      pos === "DM" ||
+      pos === "CM" ||
+      pos === "WB" ||
       pos === "LWB" ||
       pos === "RWB" ||
-      pos === "RMF" ||
-      pos === "LMF" ||
-      pos === "AMF"
+      pos === "SM" ||
+      pos === "RM" ||
+      pos === "LM" ||
+      pos === "AM"
     ) {
       posColor = "bg-success border border-success rounded";
       return posColor;
-    } else if (pos === "RW" || pos === "LW" || pos === "SS" || pos === "CF") {
+    } else if (
+      pos === "WF" ||
+      pos === "RW" ||
+      pos === "LW" ||
+      pos === "SS" ||
+      pos === "CF"
+    ) {
       posColor = "bg-danger border border-danger rounded";
       return posColor;
     }
