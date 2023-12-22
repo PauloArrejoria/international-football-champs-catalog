@@ -63,7 +63,6 @@ function Stats({ onUpdate }) {
   const getTeams = () => {
     return Axios.get("http://localhost:3001/teams").then((response) => {
       setTeams(response.data);
-      console.log(response.data);
       return response.data; // Devuelve los equipos para que puedan ser utilizados en la siguiente promesa
     });
   };
@@ -72,7 +71,6 @@ function Stats({ onUpdate }) {
     return Axios.get(`http://localhost:3001/starting/${teamId}`).then(
       (response) => {
         setStarting(response.data);
-        console.log(response.data);
       }
     );
   };
@@ -81,12 +79,34 @@ function Stats({ onUpdate }) {
     return Axios.get(`http://localhost:3001/reserve/${teamId}`).then(
       (response) => {
         setReserve(response.data);
-        console.log(response.data);
       }
     );
   };
 
   onUpdate(startingTeam, reserveTeam);
+
+  const calcOvr = () => {
+    const averageOvr =
+      startingTeam.reduce((sum, player) => sum + player.ovr, 0) /
+      startingTeam.length;
+    return Math.round(averageOvr);
+  };
+
+  const textColor = () => {
+    let color;
+    if (calcOvr() < 75) {
+      color = "text-secondary";
+    } else if (calcOvr() >= 75 && calcOvr() <= 79) {
+      color = "text-success";
+    } else if (calcOvr() >= 80 && calcOvr() <= 89) {
+      color = "ovr80-89";
+    } else if (calcOvr() >= 90 && calcOvr() <= 94) {
+      color = "text-warning";
+    } else if (calcOvr() >= 95) {
+      color = "text-danger";
+    }
+    return color;
+  };
 
   useEffect(() => {
     getTeams().then((teams) => {
@@ -128,34 +148,14 @@ function Stats({ onUpdate }) {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div className="row d-flex align-items-center">
-        <span className="col-3 text-white bg-green fw-bold">Attack</span>
-        <span className="col-2 bg-yellow fw-bold text-warning">90</span>
-        <Bar width={90}></Bar>
-      </div>
-      <div className="row d-flex align-items-center">
-        <span className="col-3 text-white bg-green fw-bold">Defense</span>
-        <span className="col-2 bg-yellow fw-bold ovr80-89">83</span>
-        <Bar width={83}></Bar>
-      </div>
-      <div className="row d-flex align-items-center">
-        <span className="col-3 text-white bg-green fw-bold">Midfield</span>
-        <span className="col-2 bg-yellow fw-bold ovr80-89">84</span>
-        <Bar width={84}></Bar>
-      </div>
-      <div className="row d-flex align-items-center">
-        <span className="col-3 text-white bg-green fw-bold">Speed</span>
-        <span className="col-2 bg-yellow fw-bold text-success">79</span>
-        <Bar width={79}></Bar>
-      </div>
-      <div className="row d-flex align-items-center">
-        <span className="col-3 text-white bg-green fw-bold">Teamwork</span>
-        <span className="col-2 bg-yellow fw-bold text-success">76</span>
-        <Bar width={76}></Bar>
-      </div>
+      <Bar stat={"Attack"} squad={startingTeam} />
+      <Bar stat={"Midfield"} squad={startingTeam} />
+      <Bar stat={"Defense"} squad={startingTeam} />
+      <Bar stat={"Speed"} squad={startingTeam} />
+      <Bar stat={"Teamwork"} squad={startingTeam} />
       <div className="ovr-container">
         <span className="text-white fw-bold ovr-font">
-          Overall: <span className="ovr80-89">85</span>
+          Overall: <span className={textColor()}>{calcOvr()}</span>
         </span>
       </div>
     </div>
