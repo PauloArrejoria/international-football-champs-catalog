@@ -97,7 +97,7 @@ app.get("/starting/:team_id", async (req, res) => {
 app.get("/reserve/:team_id", (req, res) => {
   const teamId = req.params.team_id;
   connection.query(
-    "SELECT id_team, id_player, name, nat, pos, ovr, speed, teamwork, number FROM players JOIN reserve_players ON reserve_players.id_player = players.id WHERE id_team = ? ORDER BY CASE pos WHEN 'GK' THEN 1 WHEN 'SW' THEN 2 WHEN 'CB' THEN 3 WHEN 'RB' THEN 4 WHEN 'LB' THEN 5 WHEN 'DM' THEN 6 WHEN 'CM' THEN 7 WHEN 'RWB' THEN 8 WHEN 'LWB' THEN 9 WHEN 'RM' THEN 10 WHEN 'LM' THEN 11 WHEN 'AM' THEN 12 WHEN 'RW' THEN 13 WHEN 'LW' THEN 14 WHEN 'SS' THEN 15 WHEN 'CF' THEN 16 ELSE 17 END, number;",
+    "SELECT id_team, id_player, name, nat, pos, ovr, speed, teamwork, number FROM players JOIN reserve_players ON reserve_players.id_player = players.id WHERE id_team = ? ORDER BY CASE pos WHEN 'GK' THEN 1 WHEN 'SW' THEN 2 WHEN 'CB' THEN 3 WHEN 'SB' THEN 4 WHEN 'RB' THEN 5 WHEN 'LB' THEN 6 WHEN 'DM' THEN 7 WHEN 'CM' THEN 8 WHEN 'WB' THEN 9 WHEN 'RWB' THEN 10 WHEN 'LWB' THEN 11 WHEN 'SM' THEN 12 WHEN 'RM' THEN 13 WHEN 'LM' THEN 14 WHEN 'AM' THEN 15 WHEN 'WF' THEN 16 WHEN 'RW' THEN 17 WHEN 'LW' THEN 18 WHEN 'SS' THEN 19 WHEN 'CF' THEN 20 ELSE 21 END, number;",
     teamId,
     (err, result) => {
       if (err) {
