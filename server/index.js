@@ -97,7 +97,7 @@ app.get("/starting/:team_id", async (req, res) => {
 app.get("/reserve/:team_id", (req, res) => {
   const teamId = req.params.team_id;
   connection.query(
-    "SELECT id_team, id_player, name, nat, pos, ovr, speed, teamwork, number FROM players JOIN reserve_players ON reserve_players.id_player = players.id WHERE id_team = ?",
+    "SELECT id_team, id_player, name, nat, pos, ovr, speed, teamwork, number FROM players JOIN reserve_players ON reserve_players.id_player = players.id WHERE id_team = ? ORDER BY CASE pos WHEN 'GK' THEN 1 WHEN 'SW' THEN 2 WHEN 'CB' THEN 3 WHEN 'RB' THEN 4 WHEN 'LB' THEN 5 WHEN 'DM' THEN 6 WHEN 'CM' THEN 7 WHEN 'RWB' THEN 8 WHEN 'LWB' THEN 9 WHEN 'RM' THEN 10 WHEN 'LM' THEN 11 WHEN 'AM' THEN 12 WHEN 'RW' THEN 13 WHEN 'LW' THEN 14 WHEN 'SS' THEN 15 WHEN 'CF' THEN 16 ELSE 17 END, number;",
     teamId,
     (err, result) => {
       if (err) {
